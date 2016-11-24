@@ -25,6 +25,12 @@ export const EDITING = 'EDITING';
 export const VIEWING = 'VIEWING';
 
 /**
+ * About state.
+ * @type {string}
+ */
+export const ABOUT = 'ABOUT';
+
+/**
  * Idle state, show table.
  * @type {string}
  */
@@ -210,6 +216,20 @@ export function tableReducer(state, action) {
         sortColumn: state.sortColumn,
         sortAsc: state.sortAsc
       };
+
+    /**
+     * Show about site page.
+     */
+    case ABOUT:
+      return {
+        list: state.list,
+        product: action.payload,
+        action: ABOUT,
+        filters: state.filters,
+        sortColumn: state.sortColumn,
+        sortAsc: state.sortAsc
+      };
+
 
     /**
      * Cancel event (back to table).

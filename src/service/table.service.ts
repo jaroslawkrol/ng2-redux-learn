@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {StoreService} from "../store.service";
 import {Product} from "../model/product";
+import {ABOUT} from "../reducers/table.reducer";
 /**
  * Created by wrobl on 23.11.2016.
  */
@@ -160,6 +161,13 @@ export class TableService {
   public cancel() {
     this.store.dispatch({
       type: CANCEL,
+      payload: {}
+    })
+  }
+
+  public showAbout() {
+    this.store.dispatch({
+      type: ABOUT,
       payload: {}
     })
   }

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {StoreService} from "../store.service";
 import {TableService} from "../service/table.service";
-import {NEW, EDITING, VIEWING, IDLE} from "../reducers/table.reducer";
+import {NEW, EDITING, VIEWING, IDLE, ABOUT} from "../reducers/table.reducer";
 
 /**
  * Main application component.
@@ -22,9 +22,11 @@ export class AppComponent {
     this.headers[VIEWING] = 'Podgląd produktu';
     this.headers[IDLE] = 'Lista produktów';
 
-
     this.tableService.loadTable();
+
   }
+
+  private ABOUT: string = ABOUT;
 
   /**
    * Store, that hold redux state.

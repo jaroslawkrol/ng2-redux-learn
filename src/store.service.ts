@@ -1,7 +1,7 @@
 /**
  * Created by wrobl on 23.11.2016.
  */
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {createStore, combineReducers, compose, applyMiddleware} from "redux";
 import {tableReducer} from "./reducers/table.reducer";
 
@@ -13,18 +13,18 @@ export class StoreService {
   constructor() {
     //noinspection TypeScriptUnresolvedVariable,TypeScriptUnresolvedFunction
     this._store = createStore(
-      tableReducer,
-      /*      compose(
-       window.devToolsExtension  && window.devToolsExtension()
+      tableReducer/*, // USED TO DEV
+       compose(
+       window.devToolsExtension && window.devToolsExtension()
        )*/
     );
   }
 
-  get state(){
+  get state() {
     return this._store.getState();
   }
 
-  public dispatch(action){
+  public dispatch(action) {
     this._store.dispatch(action);
   }
 }

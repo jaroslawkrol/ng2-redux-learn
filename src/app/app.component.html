@@ -4,8 +4,74 @@
   <button md-raised-button color="accent" *ngIf="store.state.action !== 'NEW'" (click)="tableService.newProduct()">Dodaj
     produkt
   </button>
+  &nbsp;
+  <button md-raised-button color="accent" (click)="tableService.showAbout()">O stronie</button>
 </md-toolbar>
 
 <app-product [item]="store.state.product" [action]="store.state.action"></app-product>
 <app-table [items]="store.state.list" [action]="store.state.action" [filters]="store.state.filters"
            [sortColumn]="store.state.sortColumn" [sortAsc]="store.state.sortAsc"></app-table>
+
+<md-card *ngIf="store.state.action === ABOUT">
+  <md-card-title-group>
+    <md-card-title>Zaawansowane aplikacje internetowe</md-card-title>
+    <md-card-subtitle>Projekt III - AngularJS</md-card-subtitle>
+  </md-card-title-group>
+  <article>
+    <strong>Wykonał</strong>
+    <p>inż. Bartosz Wróblewski<br/>
+      nr. albumu 280303<br/>
+      Wydział Elektroniki i Technik Informacyjnych<br/>
+      Kierunek Informatyka<br/>
+      pecjalność Systemy Internetowe Wspomagania Zarządzania</p>
+    <strong>Przedmiot prowadzi</strong>
+    <p>dr inż. Piotr Witoński</p>
+    <strong>Autorzy przedmiotu</strong>
+    <p>doc. dr inż. Tomasz Winek</p>
+    <strong>Wykładowcy w tej edycji:</strong>
+    <p>dr inż. Piotr Witoński<br/>
+      dr inż. Przemysław Korpas<br/>
+      mgr inż. Kamil Warcaba</p>
+
+    <ul class="list-group checked-list-box">
+      <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i>
+        Aplikacja powinna działać jedynie po stronie przeglądarki (bez częsci serwerowej)
+      </li>
+      <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i>
+        Produkty powinny być przechowywane jedynie w pamięci przeglądarki. <sup>Nie są przechowywane w localStorage
+          przeglądarki</sup>
+      </li>
+      <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i>
+        Przy uruchomieniu aplikacji na liście powinny się znajdować przykładowe produkty. <sup>20 produktów</sup>
+      </li>
+      <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i>
+        Produkty powinny być renderowane na stronie przy użyciu samodzielnie stworzonej dyrektywy. <sup>Dyrektywa
+          app-product</sup>
+      </li>
+
+      <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i>
+        Produkt powinien się składać z:
+        <ul>
+          <li>Obrazka (url do obrazka gdzieś w internecie),</li>
+          <li>Nazwy,</li>
+          <li>Ceny,</li>
+          <li>Opisu produktu</li>
+          <li>Oraz innych danych dotyczących produktu (minimum 3) <sup>(Ilość, ocena, sprzedaż detaliczna)</sup></li>
+        </ul>
+      </li>
+      <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i>
+        Aplikacja powinna umożliwiać posortowanie listy produktów po danych produktu (nazwa, cena itd...). Do sortowania
+        można wykorzystać np. ComboBox z listą elementów, po których można posortować. <sup>Można sortować kolumny
+          klikając na ich nagłówki</sup>
+      </li>
+      <li class="list-group-item"><i class="fa fa-check" aria-hidden="true"></i>
+        Dodatkowo powinna być możliwość filtrowania listy po cenie wpisując cenę od i do <sup>Filtrownica znajduje się nad
+          tabelą z produktami</sup>
+      </li>
+    </ul>
+    <br/>
+    <p>
+      <button md-raised-button color="primary" (click)="tableService.cancel()">Wróć</button>
+    </p>
+  </article>
+</md-card>

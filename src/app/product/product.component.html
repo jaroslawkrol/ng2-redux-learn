@@ -9,8 +9,8 @@
     <md-input placeholder="Ilość" type="number" [(ngModel)]="item.quantity">
     </md-input>
 
-    <label for="quality">Jakość produktu:</label>
-    <md-slider id="quality" min="1" max="5" [(ngModel)]="item.quality">Jakość</md-slider>
+    <label for="quality">Jakość produktu: {{(item.quality?item.quality:0) * 20}}%</label>
+    <md-slider id="quality" min="0" max="5" [(ngModel)]="item.quality"></md-slider>
 
     <md-slide-toggle [(ngModel)]="item.detal">
       Dostępny w sprzedaży detalicznej
