@@ -1,3 +1,6 @@
+/**
+ * Model class, which represent single product on table.
+ */
 export class Product {
   public id:number;
 

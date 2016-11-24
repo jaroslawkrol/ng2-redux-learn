@@ -13,7 +13,10 @@ export class StoreService {
   constructor() {
     //noinspection TypeScriptUnresolvedVariable,TypeScriptUnresolvedFunction
     this._store = createStore(
-      tableReducer
+      tableReducer,
+      /*      compose(
+       window.devToolsExtension  && window.devToolsExtension()
+       )*/
     );
   }
 

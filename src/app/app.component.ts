@@ -1,22 +1,21 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {StoreService} from "../store.service";
 import {TableService} from "../service/table.service";
-import {NEW, EDITING, VIEWING, IDLE } from "../reducers/table.reducer";
+import {NEW, EDITING, VIEWING, IDLE} from "../reducers/table.reducer";
 
+/**
+ * Main application component.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private store: StoreService;
-  private list: TableService;
 
-  private headers:any[] = [];
-
-  constructor(store: StoreService, list: TableService) {
+  constructor(store: StoreService, tableService: TableService) {
     this.store = store;
-    this.list  = list;
+    this.tableService = tableService;
 
     this.headers[NEW] = 'Dodaj produkt';
     this.headers[EDITING] = 'Edycja produktu';
@@ -24,6 +23,22 @@ export class AppComponent {
     this.headers[IDLE] = 'Lista produktów';
 
 
-    list.loadTable();
+    this.tableService.loadTable();
   }
+
+  /**
+   * Store, that hold redux state.
+   */
+  private store: StoreService;
+
+  /**
+   * Table service, which holds actions.
+   */
+  private tableService: TableService;
+
+  /**
+   * Headers for actions.
+   * @type {Array}
+   */
+  private headers: any[] = [];
 }

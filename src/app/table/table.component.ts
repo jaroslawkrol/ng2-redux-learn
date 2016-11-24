@@ -4,6 +4,9 @@ import {TableService} from "../../service/table.service";
 import {Product} from "../../model/product";
 import {IDLE} from "../../reducers/table.reducer";
 
+/**
+ * Components renders table.
+ */
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -12,26 +15,55 @@ import {IDLE} from "../../reducers/table.reducer";
 })
 export class TableComponent {
 
+  constructor(tableService: TableService) {
+    this.tableService = tableService;
+  }
+
+  /**
+   * Items to render.
+   */
   @Input() items: Product[];
+
+  /**
+   * Current action.
+   */
   @Input() action: string;
+
+  /**
+   * Applied filters for price.
+   */
   @Input() filters: any;
+
+  /**
+   * Sort column name.
+   */
   @Input() sortColumn: string;
+
+  /**
+   * Sort direction.
+   */
   @Input() sortAsc: boolean;
 
+  /**
+   * Table service, which holds actions.
+   */
+  private tableService: TableService;
+
+  /**
+   * Magic string, that hold IDLE action identifier.
+   * @type {string}
+   */
   private IDLE: string = IDLE;
 
-  private columns:any[] = [
-    {name: 'image', 'header': 'Obrazek', sortable: false},
+  /**
+   * Colums in table to show and headers.
+   * @type {{name: string; header: string; sortable: boolean}[]}
+   */
+  private columns: any[] = [
     {name: 'name', 'header': 'Nazwa produktu', sortable: true},
-    {name: 'price', 'header': 'Nazwa produktu', sortable: true},
-    {name: 'quality', 'header': 'Nazwa produktu', sortable: true},
-    {name: 'quantity', 'header': 'Nazwa produktu', sortable: true},
+    {name: 'price', 'header': 'Cena', sortable: true},
+    {name: 'quality', 'header': 'Jakość', sortable: true},
+    {name: 'quantity', 'header': 'Ilość', sortable: true},
   ];
-
-  private list:TableService;
-
-  constructor(list: TableService) {
-    this.list = list;
-  }
 
 }
