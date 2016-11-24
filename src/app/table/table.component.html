@@ -1,0 +1,15 @@
+<md-card *ngIf="action == 'IDLE'">
+ <table class="table">
+    <thead>
+    <tr>
+      <th>Obrazek <i class="fa fa-sort"></i></th>
+      <th>Nazwa <i class="fa fa-sort"></i></th>
+      <th>Cena <i class="fa fa-sort"></i></th>
+      <th>Opcje</th>
+    </tr>
+    </thead>
+    <tbody>
+        <app-table-row *ngFor="let product of items" [item]="product"></app-table-row>
+    </tbody>
+  </table>
+</md-card>

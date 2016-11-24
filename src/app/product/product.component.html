@@ -1,0 +1,34 @@
+<div>
+  <md-card *ngIf="action == 'NEW' || action == 'EDITING'">
+    <md-input placeholder="Nazwa produktu"  value="{{item?.name}}" #name></md-input>
+    <md-input placeholder="Cena produktu"  value="{{item?.price}}" #price></md-input>
+    <md-input placeholder="URL obrazka"  value="{{item?.image}}" #image></md-input>
+    <md-input placeholder="URL obrazka"  value="{{item?.image}}" #image></md-input>
+    <md-input placeholder="URL obrazka"  value="{{item?.image}}" #image></md-input>
+    <md-input placeholder="URL obrazka"  value="{{item?.image}}" #image></md-input>
+    <md-input placeholder="Opis produktu"  value="{{item?.description}}" #description></md-input>
+
+    <div class="form-group" [ngSwitch]="action">
+      <button *ngSwitchCase="'NEW'" md-raised-button color="primary" (click)="list.addProduct(name.value, price.value, image.value)">Zapisz</button>
+      <button *ngSwitchCase="'EDITING'" md-raised-button color="primary" (click)="list.updateProduct(item, name.value, price.value, image.value)">Zapisz</button>
+      <button md-raised-button color="primary" (click)="list.cancel()">Anuluj</button>
+    </div>
+
+  </md-card>
+
+  <md-card *ngIf="action == 'VIEWING'">
+      <md-card-title-group>
+        <img md-card-sm-image src="{{item?.image}}">
+        <md-card-title>{{item?.name}}</md-card-title>
+        <md-card-subtitle>
+          {{item?.price | currency}}
+
+            <p>
+              {{item?.description}}
+            </p>
+        </md-card-subtitle>
+      </md-card-title-group>
+      <button md-raised-button color="primary" (click)="list.cancel()">Anuluj</button>
+  </md-card>
+</div>
+'
