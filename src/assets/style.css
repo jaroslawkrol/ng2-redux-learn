@@ -5,5 +5,18 @@ app-table-row {
 }
 
 .img-thumbnail {
-  width: 50px;
+  width: 4em;
+}
+
+.productForm md-input, .productForm md-slide-toggle {
+  width: 100%;
+}
+
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+article {
+  font-size: 0.8em;
+  margin-bottom: 1em;
 }

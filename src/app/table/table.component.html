@@ -1,15 +1,28 @@
-<md-card *ngIf="action == 'IDLE'">
+<md-card *ngIf="action == IDLE">
+  <md-input type="number" placeholder="Cena od" value="{{filters.from}}" #priceFrom (change)="list.applyFilters(priceFrom.value, priceTo.value)" >
+    <span md-suffix>zł</span>
+  </md-input>
+  <md-input type="number" placeholder="Cena do" value="{{filters.to}}" #priceTo (change)="list.applyFilters(priceFrom.value, priceTo.value)" >
+    <span md-suffix>zł</span>
+  </md-input>
+  &nbsp;
+  <button md-button color="primary" (click)="list.clearFilters()" [style.display]="priceFrom.value || priceTo.value ? 'inline' : 'none'">Wyczyść filtry</button>
+
+
  <table class="table">
     <thead>
     <tr>
-      <th>Obrazek <i class="fa fa-sort"></i></th>
-      <th>Nazwa <i class="fa fa-sort"></i></th>
-      <th>Cena <i class="fa fa-sort"></i></th>
+      <th *ngFor="let column of columns" (click)="!column.sortable || list.sortTable(column.name)">
+        <i *ngIf="column.sortable && sortColumn !== column.name" class="fa fa-sort"></i>
+        <i *ngIf="column.sortable && sortColumn === column.name && sortAsc" class="fa fa-sort-asc"></i>
+        <i *ngIf="column.sortable && sortColumn === column.name && !sortAsc" class="fa fa-sort-desc"></i>
+        {{column.header}}
+      </th>
       <th>Opcje</th>
     </tr>
     </thead>
     <tbody>
-        <app-table-row *ngFor="let product of items" [item]="product"></app-table-row>
+        <app-table-row *ngFor="let product of items" [item]="product" [style.display]="(!filters.to || product.price <= filters.to) && ( !filters.from || product.price >= filters.from)?'table-row':'none'"></app-table-row>
     </tbody>
   </table>
 </md-card>

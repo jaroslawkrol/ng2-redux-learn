@@ -1,34 +1,51 @@
 <div>
-  <md-card *ngIf="action == 'NEW' || action == 'EDITING'">
-    <md-input placeholder="Nazwa produktu"  value="{{item?.name}}" #name></md-input>
-    <md-input placeholder="Cena produktu"  value="{{item?.price}}" #price></md-input>
-    <md-input placeholder="URL obrazka"  value="{{item?.image}}" #image></md-input>
-    <md-input placeholder="URL obrazka"  value="{{item?.image}}" #image></md-input>
-    <md-input placeholder="URL obrazka"  value="{{item?.image}}" #image></md-input>
-    <md-input placeholder="URL obrazka"  value="{{item?.image}}" #image></md-input>
-    <md-input placeholder="Opis produktu"  value="{{item?.description}}" #description></md-input>
+  <md-card class="productForm" *ngIf="action === NEW || action == EDITING">
+    <md-input placeholder="Nazwa produktu"  [(ngModel)]="item.name"></md-input>
+    <md-input placeholder="URL obrazka"  [(ngModel)]="item.image"></md-input>
+    <md-input placeholder="Opis produktu"  [(ngModel)]="item.description"></md-input>
+
+
+    <md-input placeholder="Cena produktu" type="number" [(ngModel)]="item.price">
+    </md-input>
+    <md-input placeholder="Ilość" type="number" [(ngModel)]="item.quantity">
+    </md-input>
+
+    <label for="quality">Jakość produktu:</label>
+    <md-slider id="quality" min="1" max="5" [(ngModel)]="item.quality">Jakość</md-slider>
+
+    <md-slide-toggle [(ngModel)]="item.detal">
+      Dostępny w sprzedaży detalicznej
+    </md-slide-toggle>
+
 
     <div class="form-group" [ngSwitch]="action">
-      <button *ngSwitchCase="'NEW'" md-raised-button color="primary" (click)="list.addProduct(name.value, price.value, image.value)">Zapisz</button>
-      <button *ngSwitchCase="'EDITING'" md-raised-button color="primary" (click)="list.updateProduct(item, name.value, price.value, image.value)">Zapisz</button>
+      <button *ngSwitchCase="NEW" md-raised-button color="primary" (click)="list.addProduct(item)">Zapisz</button>
+      <button *ngSwitchCase="EDITING" md-raised-button color="primary" (click)="list.updateProduct(item)">Zapisz</button>
       <button md-raised-button color="primary" (click)="list.cancel()">Anuluj</button>
     </div>
 
   </md-card>
 
-  <md-card *ngIf="action == 'VIEWING'">
+  <md-card *ngIf="action == VIEWING">
       <md-card-title-group>
-        <img md-card-sm-image src="{{item?.image}}">
+        <img md-card-sm-image src="{{item?.image}}" class="img-fluid"  />
         <md-card-title>{{item?.name}}</md-card-title>
         <md-card-subtitle>
-          {{item?.price | currency}}
-
-            <p>
-              {{item?.description}}
-            </p>
+          <div>Cena: {{item?.price}} zł</div>
+          <div>Ilość: {{item?.quantity}} szt.</div>
+          <div>Sprzedaż detaliczna:
+            <i *ngIf="item.detal" class="fa fa-check-square-o"></i>
+            <i *ngIf="!item.detal" class="fa fa-square-o"></i>
+          </div>
+          <div>Jakość:
+            <md-progress-bar mode="determinate" value="{{item.quality * 20}}"></md-progress-bar>
+          </div>
         </md-card-subtitle>
       </md-card-title-group>
-      <button md-raised-button color="primary" (click)="list.cancel()">Anuluj</button>
+
+    <article>
+      {{item?.description}}
+    </article>
+    <button md-raised-button color="primary" (click)="list.cancel()">Anuluj</button>
   </md-card>
 </div>
-'

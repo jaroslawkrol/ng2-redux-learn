@@ -1,10 +1,8 @@
-
 <md-toolbar color="primary">
-  {{headers[store.state.table.state]}}
-  <button *ngIf="store.state.table.state !== 'NEW'" md-button (click)="list.newProduct()">Dodaj produkt</button>
+  <span>{{headers[store.state.state]}}</span>
+  <span class="example-fill-remaining-space"></span>
+  <button md-raised-button color="accent" *ngIf="store.state.state !== 'NEW'" (click)="list.newProduct()">Dodaj produkt</button>
 </md-toolbar>
 
-
-
-<app-product [item]="store.state.table.product" [action]="store.state.table.state"></app-product>
-<app-table [items]="store.state.table.list" [action]="store.state.table.state"></app-table>
+<app-product [item]="store.state.product" [action]="store.state.state"></app-product>
+<app-table [items]="store.state.list" [action]="store.state.state" [filters]="store.state.filters" [sortColumn]="store.state.sortColumn" [sortAsc]="store.state.sortAsc"></app-table>

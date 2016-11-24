@@ -4,13 +4,6 @@
 import { Injectable } from '@angular/core';
 import {createStore, combineReducers, compose, applyMiddleware} from "redux";
 import {tableReducer} from "./reducers/table.reducer";
-/*import {listReducer} from "./reducers/list.reducer";
-import {userReducer} from "./reducers/user.reducer";
-import {auth} from "./middleware/auth.middleware";*/
-
-const rootReducer = combineReducers({
-  table: tableReducer
-});
 
 @Injectable()
 export class StoreService {
@@ -20,11 +13,7 @@ export class StoreService {
   constructor() {
     //noinspection TypeScriptUnresolvedVariable,TypeScriptUnresolvedFunction
     this._store = createStore(
-      rootReducer,
-      compose(
-        /*applyMiddleware(auth),*/
-        window.devToolsExtension  && window.devToolsExtension()
-      )
+      tableReducer
     );
   }
 

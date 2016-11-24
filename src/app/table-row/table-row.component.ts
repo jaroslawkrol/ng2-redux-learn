@@ -10,6 +10,7 @@ import {TableService} from "../../service/table.service";
 })
 export class TableRowComponent {
   @Input() item: any;
+
   private list:TableService;
 
   constructor(list: TableService) {

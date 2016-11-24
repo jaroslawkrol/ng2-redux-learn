@@ -1,9 +1,13 @@
 
 <td>
-  <img src="{{item.image}}" class="img-thumbnail" alt="Responsive image">
+  <img src="{{item.image}}" class="img-thumbnail" />
 </td>
 <td>{{item.name}}</td>
-<td>{{item.price | currency}}</td>
+<td>{{item.price}} zł.</td>
+<td>
+  <md-progress-bar mode="determinate" value="{{item.quality * 20}}"></md-progress-bar>
+</td>
+<td>{{item.quantity}} szt.</td>
 <td>
   <button type="button" class="btn btn-secondary btn-sm" (click)="list.viewProduct(item)"><i class="fa fa-eye" aria-hidden="true"></i></button>
   <button type="button" class="btn btn-secondary btn-sm" (click)="list.editProduct(item)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
